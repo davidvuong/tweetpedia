@@ -34,6 +34,8 @@ TweetPedia is based off a boilerplate project I wrote which you can checkout [he
 
 ## Executing TweetPedia
 
+Before you can execute TweetPedia, you need to first configure your API keys. Please use the supplied `environment.json` file and place it in the root of your tweetpedia directory.
+
 There are 3 commands you need to run:
 
 ```bash

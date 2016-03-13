@@ -16,6 +16,13 @@ var babelLoaderSettings = {
   plugins: ['transform-object-rest-spread']
 };
 
+// Load authentication data from JSON file and update server environment.
+var environment = {
+  BROWSER: JSON.stringify(false)
+};
+var json = JSON.parse(fs.readFileSync('environment.json', 'utf8'));
+for (var k in json) { environment[k] = JSON.stringify(json[k]); }
+
 module.exports = {
   entry: {
     server: './src/server.js'
@@ -37,9 +44,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        BROWSER: JSON.stringify(false)
-      }
+      'process.env': environment
     })
   ]
 };

@@ -9,6 +9,7 @@ import express from 'express';
 import routes from './routes';
 import configureStore from './store/configureStore';
 import config from './config';
+import apiRouter from './express/api';
 
 const app = express();
 
@@ -17,13 +18,8 @@ app.use(express.static('public'));
 app.use(express.static('assets'));
 
 /* API router handles all requests made to `/api`. */
-const apiRouter = express.Router();
-apiRouter.route('/search')
-  .get((req, res) => {
-    res.send('stub');
-  });
-
 app.use('/api', apiRouter);
+
 app.get('*', (req, res) => {
   match({ routes, location: req.url }, (err, redirect, props) => {
     if (err) {
@@ -39,7 +35,7 @@ app.get('*', (req, res) => {
       //
       // There has got to be a better way to do this that doesn't involve
       // reading from disk and replacing a special string in the index file.
-      const html = fs.readFileSync('src/index.html', 'utf8');
+      const html = fs.readFileSync('src/express/index.html', 'utf8');
       res.send(html.replace(
         '{app-data}', renderToString(
           <Provider store={ configureStore() }>
@@ -53,7 +49,6 @@ app.get('*', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || config.PORT;
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}... Press Ctrl+C to stop.`);
+app.listen(config.PORT, () => {
+  console.log(`Listening on port ${config.PORT}... Press Ctrl+C to stop.`);
 });

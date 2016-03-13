@@ -10,7 +10,7 @@ const propTypes = {
 class SearchInput extends Component {
   render() {
     return (
-      <form className="search-input form-inline">
+      <form className="search-input form-inline" onSubmit={this.props.onSearch}>
         <div className="form-group">
           <input
             className="form-control"
@@ -21,7 +21,6 @@ class SearchInput extends Component {
           />
           <Button
             bsStyle="primary"
-            onClick={this.props.onSearch}
             type="submit"
             disabled={!this.props.query}
           >
