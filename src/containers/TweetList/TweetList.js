@@ -26,8 +26,7 @@ class TweetList extends Component {
         return (
           <div>
             <p>
-              No results found
-              <span className="text-warning">:sad_panda:</span>
+              No results found <span className="text-warning">:sad_panda:</span>
             </p>
             <img src="/images/sad_panda.gif" alt="" />
           </div>

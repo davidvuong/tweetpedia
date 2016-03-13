@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { FETCH_INIT } from '../../constants/FetchStatuses';
 import TwitterActionCreators from '../../actions/TwitterActionCreators';
+import SearchInputHeader from './SearchInputHeader/SearchInputHeader';
 
 if (process.env.BROWSER) { require('./SearchInput.scss'); }
 
@@ -33,23 +34,27 @@ class SearchInput extends Component {
 
   render() {
     return (
-      <form className="search-input" onSubmit={this.onSearch}>
-        <img src="/images/icon.png" alt="" />
-        <input
-          className="form-control"
-          type="text"
-          value={this.props.query}
-          onChange={this.props.onQueryChange}
-          placeholder="Tweet tweet~ Hey man, type something..."
-        />
-        <Button
-          bsStyle="primary"
-          type="submit"
-          disabled={this.isSearchDisabled()}
-        >
-          {this.isSearching() ? '...' : 'Go'}
-        </Button>
-      </form>
+      <div className="search-input">
+        <SearchInputHeader />
+
+        <form onSubmit={this.onSearch}>
+          <img src="/images/icon.png" alt="" />
+          <input
+            className="form-control"
+            type="text"
+            value={this.props.query}
+            onChange={this.props.onQueryChange}
+            placeholder="Tweet tweet~ Hey man, type something..."
+          />
+          <Button
+            bsStyle="info"
+            type="submit"
+            disabled={this.isSearchDisabled()}
+          >
+            {this.isSearching() ? '...' : 'Go'}
+          </Button>
+        </form>
+      </div>
     );
   }
 }
