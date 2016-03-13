@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import SearchInput from '../../containers/SearchInput/SearchInput';
 import TweetList from '../../containers/TweetList/TweetList';
 
@@ -10,12 +9,14 @@ class Home extends Component {
     return (
       <div className="container home-page">
         <SearchInput />
-        <TweetList tweets={this.props.tweets} />
+        <TweetList />
       </div>
     );
   }
 }
+export default Home;
 
+import { connect } from 'react-redux';
 function mapStateToProps(store) {
   return {
     tweets: store.twitter.tweets

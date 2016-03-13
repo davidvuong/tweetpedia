@@ -11,8 +11,8 @@ function searchInit(query) {
   return { type: SEARCH_TWITTER, fetchStatus: FETCH_INIT, query };
 }
 
-function searchSuccess() {
-  return { type: SEARCH_TWITTER, fetchStatus: FETCH_SUCCESS };
+function searchSuccess(query) {
+  return { type: SEARCH_TWITTER, fetchStatus: FETCH_SUCCESS, query };
 }
 
 function setTweets(tweets) {
@@ -40,7 +40,7 @@ function search(query) {
     return fetch(endpoint).then(res => {
       return res.json();
     }).then((tweets) => {
-      dispatch(searchSuccess());
+      dispatch(searchSuccess(query));
       dispatch(setTweets(tweets));
     }, () => {
       dispatch(searchError());

@@ -1,7 +1,7 @@
 import { Promise } from 'es6-promise';
 import Twitter from 'twitter';
 import config from '../../config';
-import { MAX_TWEETS } from '../../constants/Constants';
+import { MAX_TWEETS, TWEET_LANG } from '../../constants/Constants';
 
 const client = new Twitter({
   consumer_key: config.TWITTER_CONSUMER_KEY,
@@ -12,10 +12,12 @@ const client = new Twitter({
 
 /* Searches for Twitter tweets, fetching `MAX_TWEETS` at a time. */
 function search(query) {
-  const [endpoint, payload] = ['search/tweets', { q: query, count: MAX_TWEETS }];
-
   return new Promise((resolve, reject) => {
-    client.get(endpoint, payload, (err, data) => {
+    // See: https://dev.twitter.com/rest/reference/get/search/tweets
+    const payload = {
+      q: query, count: MAX_TWEETS, lang: TWEET_LANG
+    };
+    client.get('search/tweets', payload, (err, data) => {
       if (err) { return reject(err); }
 
       // Only extract the fields we want to use!
