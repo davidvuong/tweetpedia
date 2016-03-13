@@ -1,0 +1,17 @@
+.search-input {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  img {
+    height: 30px;
+    margin-right: 5px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+  }
+
+  input {
+    width: 380px;
+    margin-right: 3px;
+  }
+}

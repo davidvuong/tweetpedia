@@ -11,7 +11,6 @@ export default (
       <IndexRoute component={Home} />
 
       <Route path="/home" component={Home} />
-      <Route path="/search-results" component={SearchResults} />
     </Route>
   </Router>
 );

@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch';
-import { browserHistory } from 'react-router';
 import { SEARCH_TWITTER, SET_TWITTER_QUERY } from '../constants/ActionTypes';
 import { FETCH_INIT, FETCH_SUCCESS, FETCH_ERROR } from '../constants/FetchStatuses';
 import config from '../config';
@@ -34,11 +33,6 @@ function search(query) {
       return res.json();
     }).then((tweets) => {
       dispatch(searchSuccess(tweets));
-
-      // Automatically navigate to the results page upon success.
-      //
-      // See: http://stackoverflow.com/questions/31079081/programmatically-navigate-using-react-router
-      browserHistory.push('/search-results');
     }, () => {
       dispatch(searchError());
     });

@@ -1,0 +1,21 @@
+@import "../../scss/variables";
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+
+  background-color: lighten($primary-color, 10%);
+
+  p {
+    position: absolute;
+    right: 15px;
+    bottom: 0;
+    font-size: 12px;
+
+    a {
+      color: white;
+    }
+  }
+}
