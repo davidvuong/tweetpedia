@@ -28,7 +28,7 @@ class TweetList extends Component {
             <p>
               No results found <span className="text-warning">:sad_panda:</span>
             </p>
-            <img src="/images/sad_panda.gif" alt="" />
+            <img className="sad-panda" src="/images/sad_panda.gif" alt="" />
           </div>
         );
       default:
