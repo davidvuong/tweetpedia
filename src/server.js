@@ -11,7 +11,10 @@ import configureStore from './store/configureStore';
 import config from './config';
 
 const app = express();
+
+// Serve static assets from both `public/` and `assets/`.
 app.use(express.static('public'));
+app.use(express.static('assets'));
 
 /* API router handles all requests made to `/api`. */
 const apiRouter = express.Router();
