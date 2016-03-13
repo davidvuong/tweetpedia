@@ -1,14 +1,22 @@
 import fetch from 'isomorphic-fetch';
-import { SEARCH_TWITTER, SET_TWITTER_QUERY } from '../constants/ActionTypes';
-import { FETCH_INIT, FETCH_SUCCESS, FETCH_ERROR } from '../constants/FetchStatuses';
 import config from '../config';
+import {
+  SEARCH_TWITTER,
+  SET_TWITTER_QUERY,
+  SET_TWITTER_TWEETS
+} from '../constants/ActionTypes';
+import { FETCH_INIT, FETCH_SUCCESS, FETCH_ERROR } from '../constants/FetchStatuses';
 
 function searchInit(query) {
   return { type: SEARCH_TWITTER, fetchStatus: FETCH_INIT, query };
 }
 
-function searchSuccess(tweets) {
-  return { type: SEARCH_TWITTER, fetchStatus: FETCH_SUCCESS, query: '', tweets };
+function searchSuccess() {
+  return { type: SEARCH_TWITTER, fetchStatus: FETCH_SUCCESS };
+}
+
+function setTweets(tweets) {
+  return { type: SET_TWITTER_TWEETS, tweets };
 }
 
 function searchError() {
@@ -32,7 +40,8 @@ function search(query) {
     return fetch(endpoint).then(res => {
       return res.json();
     }).then((tweets) => {
-      dispatch(searchSuccess(tweets));
+      dispatch(searchSuccess());
+      dispatch(setTweets(tweets));
     }, () => {
       dispatch(searchError());
     });

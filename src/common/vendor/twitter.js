@@ -1,7 +1,7 @@
 import { Promise } from 'es6-promise';
 import Twitter from 'twitter';
-import config from '../config';
-import { MAX_TWEETS } from '../constants/Constants';
+import config from '../../config';
+import { MAX_TWEETS } from '../../constants/Constants';
 
 const client = new Twitter({
   consumer_key: config.TWITTER_CONSUMER_KEY,
@@ -24,8 +24,13 @@ function search(query) {
         const tweet = data.statuses[i];
         tweets.push({
           createdAt: tweet.created_at,
-          id: tweet.id,
-          text: tweet.text
+          id: tweet.id_str,
+          text: tweet.text,
+          user: {
+            createdAt: tweet.user.created_at,
+            id: tweet.user.id_str,
+            screenName: tweet.user.screen_name
+          }
         });
       }
       return resolve(tweets);

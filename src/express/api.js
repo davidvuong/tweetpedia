@@ -1,5 +1,5 @@
 import express from 'express';
-import twitter from '../vendor/twitter';
+import twitter from '../common/vendor/twitter';
 
 const router = express.Router();
 

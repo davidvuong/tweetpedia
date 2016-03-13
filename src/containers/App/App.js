@@ -1,4 +1,5 @@
 import React from 'react';
+import { Affix } from 'react-overlays';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 
