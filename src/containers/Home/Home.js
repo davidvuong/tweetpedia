@@ -30,6 +30,7 @@ class Home extends Component {
           <Logo />
           <SearchInput
             query={this.props.query}
+            fetchStatus={this.props.fetchStatus}
             onQueryChange={this.props.onQueryChange}
             onSearch={this.onSearch}
           />
@@ -41,7 +42,8 @@ class Home extends Component {
 
 function mapStateToProps(store) {
   return {
-    query: store.twitter.query
+    query: store.twitter.query,
+    fetchStatus: store.twitter.fetchStatus
   };
 }
 

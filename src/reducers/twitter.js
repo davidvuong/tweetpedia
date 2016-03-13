@@ -1,8 +1,10 @@
 import { SEARCH_TWITTER, SET_TWITTER_QUERY } from '../constants/ActionTypes';
+import { FETCH_IDLE } from '../constants/FetchStatuses';
 
 const initialState = {
   query: '',
-  fetchStatus: ''
+  fetchStatus: FETCH_IDLE,
+  tweets: []
 };
 
 export default (state = initialState, action = {}) => {
