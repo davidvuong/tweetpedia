@@ -11,6 +11,12 @@ class Footer extends Component {
             GitHub/DavidVuong/TweetPedia
           </a>
         </p>
+        <div className="bars">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </footer>
     );
   }

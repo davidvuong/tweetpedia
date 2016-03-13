@@ -10,12 +10,38 @@ footer {
 
   p {
     position: absolute;
-    right: 15px;
-    bottom: 0;
+    right: 5px;
+    bottom: 15px;
     font-size: 12px;
 
     a {
       color: white;
+    }
+  }
+
+  .bars {
+    display: flex;
+    justify-content: flex-end;
+
+    height: 10px;
+    width: 100%;
+
+    div {
+      height: 10px;
+      width: 50px;
+
+      &:nth-child(1) {
+        background-color: $danger-color;
+      }
+      &:nth-child(2) {
+        background-color: $info-color;
+      }
+      &:nth-child(3) {
+        background-color: $success-color;
+      }
+      &:nth-child(4) {
+        background-color: $warning-color;
+      }
     }
   }
 }
