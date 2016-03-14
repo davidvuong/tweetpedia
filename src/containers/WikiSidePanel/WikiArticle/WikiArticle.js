@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Label } from 'react-bootstrap';
 import { WIKI_URL } from '../../../constants/Constants';
 
 if (process.env.BROWSER) { require('./WikiArticle.scss'); }
@@ -11,7 +12,21 @@ class WikiArticle extends Component {
   constructor(props) {
     super(props);
 
+    this.getCategories = this.getCategories.bind(this);
     this.truncate = this.truncate.bind(this);
+  }
+
+  getCategories() {
+    const article = this.props.article;
+    if (!article || !article.categories) { return null; }
+
+    return (
+      <div className="article-categories">
+        {article.categories.map((category, i) => {
+          return <Label bsStyle="info" key={i}>{category}</Label>;
+        })}
+      </div>
+    );
   }
 
   truncate(text, limit) {
@@ -26,6 +41,7 @@ class WikiArticle extends Component {
         <small>{this.truncate(article.text, 50)}</small>
         <hr />
         <p>{this.truncate(article.text, 300) || 'No description available...'}</p>
+        {this.getCategories()}
         <hr />
         <a href={`${WIKI_URL}/${article.title}`} target="_blank">
           See full article

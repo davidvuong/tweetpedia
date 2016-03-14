@@ -20,4 +20,14 @@
     bottom: 0;
     right: 15px;
   }
+
+  .article-categories {
+    display: flex;
+    flex-wrap: wrap;
+
+    span {
+      margin-right: 3px;
+      margin-top: 3px;
+    }
+  }
 }
