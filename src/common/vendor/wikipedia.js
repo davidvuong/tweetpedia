@@ -24,9 +24,11 @@ function getArticle(title) {
       if (!markup) { return reject(); }
 
       // See: https://github.com/spencermountain/wtf_wikipedia
+      const data = wtf_wikipedia.parse(markup);
       ARTICLE_CACHE[title] = {
+        title: title,
         text: wtf_wikipedia.plaintext(markup),
-        data: wtf_wikipedia.parse(markup)
+        categories: data.categories
       };
       return resolve(ARTICLE_CACHE[title]);
     });
@@ -53,7 +55,9 @@ function search(query) {
       matches = data.query.search.map(i => i.title);
       return getArticle(matches[0]);
     }).then((data) => {
-      return resolve({ matches, article: data });
+      return resolve(Object.assign({}, data, {
+        related: matches.slice(1)  // Don't return current title.
+      }));
     }, () => {
       return reject();
     });

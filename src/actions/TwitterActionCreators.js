@@ -15,12 +15,12 @@ function searchSuccess(query) {
   return { type: SEARCH_TWITTER, fetchStatus: FETCH_SUCCESS, query };
 }
 
-function setTweets(tweets) {
-  return { type: SET_TWITTER_TWEETS, tweets };
-}
-
 function searchError() {
   return { type: SEARCH_TWITTER, fetchStatus: FETCH_ERROR, query: '' };
+}
+
+function setTweets(tweets) {
+  return { type: SET_TWITTER_TWEETS, tweets };
 }
 
 function setQuery(query) {

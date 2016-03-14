@@ -31,10 +31,7 @@ app.get('*', (req, res) => {
 
       // Matched a route in `routes`!
     } else if (props) {
-      // TODO: Improve on this! ...later
-      //
-      // There has got to be a better way to do this that doesn't involve
-      // reading from disk and replacing a special string in the index file.
+      // Read the index file into memory, replacing {app-data} with context.
       const html = fs.readFileSync('src/express/index.html', 'utf8');
       res.send(html.replace(
         '{app-data}', renderToString(

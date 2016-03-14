@@ -10,25 +10,25 @@ class TweetItem extends Component {
   constructor(props) {
     super(props);
 
-    this.getTweetHref = this.getTweetHref.bind(this);
+    this.getTweetUrl = this.getTweetUrl.bind(this);
   }
 
   componentDidMount() {
-    // TODO: Optimise me!
-    //
-    // When there are 50 tweets mounted, this will be called 50 times.
-    twttr.widgets.load(); // eslint-disable-line no-undef
+    // Only load the current tweet element once.
+    twttr.widgets.load( // eslint-disable-line no-undef
+      document.getElementsByClassName(`id-${this.props.tweet.id}`)
+    );
   }
 
-  getTweetHref() {
+  getTweetUrl() {
     const tweet = this.props.tweet;
     return `https://twitter.com/${tweet.screenName}/status/${tweet.id}`;
   }
 
   render() {
     return (
-      <blockquote className="tweet-item twitter-tweet">
-        <a href={this.getTweetHref()}></a>
+      <blockquote className={`tweet-item twitter-tweet id-${this.props.tweet.id}`}>
+        <a href={this.getTweetUrl()}></a>
       </blockquote>
     );
   }
