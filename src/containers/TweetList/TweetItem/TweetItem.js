@@ -14,6 +14,9 @@ class TweetItem extends Component {
   }
 
   componentDidMount() {
+    // TODO: Optimise me!
+    //
+    // When there are 50 tweets mounted, this will be called 50 times.
     twttr.widgets.load(); // eslint-disable-line no-undef
   }
 

@@ -19,8 +19,8 @@ class SearchInput extends Component {
   onSearch(event) {
     event.preventDefault();
 
-    const action = TwitterActionCreators.search(this.props.query);
-    if (!action) { return null; }
+    // Don't dispatch action if there's nothing worth querying.
+    if (!this.props.query) { return null; }
     return this.props.onSearch(this.props.query);
   }
 

@@ -28,9 +28,6 @@ function setQuery(query) {
 }
 
 function search(query) {
-  // There must be some worth querying. Don't do it, man!
-  if (!query) { return null; }
-
   return (dispatch) => {
     dispatch(searchInit(query));
 
