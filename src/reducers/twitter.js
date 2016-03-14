@@ -5,7 +5,7 @@ import {
 } from '../constants/ActionTypes';
 import { FETCH_IDLE } from '../constants/FetchStatuses';
 
-const initialState = {
+export const initialState = {
   query: '',
   fetchStatus: FETCH_IDLE,
   tweets: []
