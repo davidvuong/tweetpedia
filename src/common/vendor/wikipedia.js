@@ -6,13 +6,29 @@ import {
   WIKI_FORMAT
 } from '../../constants/Constants';
 
+// Wikipedia article cache:
+//
+// It's suggested by Wikipedia to cache requests as it's quite rare that an
+// article will be updated. Normally, I would invalidate the cache after a
+// certain time frame but for this project, articles are cached indefinitely.
+const ARTICLE_CACHE = {};
+
 /* eslint-disable */
 function getArticle(title) {
   return new Promise((resolve, reject) => {
     if (!title) { return reject(); }
+    if (ARTICLE_CACHE[title]) {
+      return resolve(ARTICLE_CACHE[title]);
+    }
     return wtf_wikipedia.from_api(title, WIKI_LANG, (markup) => {
+      if (!markup) { return reject(); }
+
       // See: https://github.com/spencermountain/wtf_wikipedia
-      return markup ? resolve(wtf_wikipedia.parse(markup)) : reject();
+      ARTICLE_CACHE[title] = {
+        text: wtf_wikipedia.plaintext(markup),
+        data: wtf_wikipedia.parse(markup)
+      };
+      return resolve(ARTICLE_CACHE[title]);
     });
   });
 }
