@@ -1,0 +1,30 @@
+@import "../../common/scss/variables";
+
+.wiki-side-panel {
+  .panel {
+    &.form-lg {
+      width: 350px;
+      height: 70%;
+    }
+
+    right: 15px;
+    width: 200px;
+    border-color: lighten($primary-color, 20%);
+
+    i {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .panel-body {
+      padding: 5px;
+
+      .close {
+        outline: none;
+
+        position: relative;
+        right: 5px;
+      }
+    }
+  }
+}

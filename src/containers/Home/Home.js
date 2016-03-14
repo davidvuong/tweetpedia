@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SearchInput from '../../containers/SearchInput/SearchInput';
 import TweetList from '../../containers/TweetList/TweetList';
-import WikiSidePanel from '../../components/WikiSidePanel/WikiSidePanel';
+import WikiSidePanel from '../../containers/WikiSidePanel/WikiSidePanel';
 
 if (process.env.BROWSER) { require('./Home.scss'); }
 

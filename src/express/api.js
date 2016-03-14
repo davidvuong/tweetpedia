@@ -5,10 +5,11 @@ import wikipedia from '../common/vendor/wikipedia';
 const router = express.Router();
 
 function search(query, module, res) {
-  module.search(query).then((data) => {
+  // Strip leading&trailing whitespaces for more accurate results.
+  module.search(query.replace(/ /g, '')).then((data) => {
     res.json(data);
   }, (err) => {
-    res.status(400).send({ error: err });
+    res.status(404).send({ error: err });
   });
 }
 

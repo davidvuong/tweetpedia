@@ -65,7 +65,7 @@ class TweetList extends Component {
           </div>
         );
       default:
-        return <span />;
+        return null;
     }
   }
 

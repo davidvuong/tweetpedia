@@ -1,11 +1,12 @@
 import fetch from 'isomorphic-fetch';
+import _ from 'lodash';
 import config from '../config';
 import {
   SET_WIKI_QUERY,
+  SET_ACTIVE_WIKI_ARTICLE,
   SEARCH_WIKI,
   UPDATE_WIKI_HISTORY,
-  TOGGLE_WIKI_PANEL,
-  TOGGLE_WIKI_TAB
+  TOGGLE_WIKI_PANEL
 } from '../constants/ActionTypes';
 import { FETCH_INIT, FETCH_SUCCESS, FETCH_ERROR } from '../constants/FetchStatuses';
 
@@ -17,12 +18,12 @@ function setQuery(query) {
   return { type: SET_WIKI_QUERY, query };
 }
 
-function togglePanel(isEnlarged) {
-  return { type: TOGGLE_WIKI_PANEL, isEnlarged };
+function setActiveArticle(activeArticle) {
+  return { type: SET_ACTIVE_WIKI_ARTICLE, activeArticle };
 }
 
-function toggleTab(activeTab) {
-  return { type: TOGGLE_WIKI_TAB, activeTab };
+function togglePanel(isEnlarged) {
+  return { type: TOGGLE_WIKI_PANEL, isEnlarged };
 }
 
 function searchInit(query) {
@@ -33,8 +34,8 @@ function searchSuccess(query) {
   return { type: SEARCH_WIKI, fetchStatus: FETCH_SUCCESS, query };
 }
 
-function searchError() {
-  return { type: SEARCH_WIKI, fetchStatus: FETCH_ERROR, query: '' };
+function searchError(query) {
+  return { type: SEARCH_WIKI, fetchStatus: FETCH_ERROR, query };
 }
 
 function search(query) {
@@ -47,12 +48,17 @@ function search(query) {
     return fetch(endpoint).then(res => {
       return res.json();
     }).then((article) => {
-      dispatch(searchSuccess(query));
-      dispatch(updateHistory(query, article));
+      if (_.isEmpty(article)) {
+        dispatch(searchError(query));
+      } else {
+        dispatch(searchSuccess(query));
+        dispatch(updateHistory(query, article));
+        dispatch(setActiveArticle(article));
+      }
     }, () => {
-      dispatch(searchError());
+      dispatch(searchError(query));
     });
   };
 }
 
-export default { search, updateHistory, setQuery, toggleTab, togglePanel };
+export default { search, updateHistory, setQuery, togglePanel };
