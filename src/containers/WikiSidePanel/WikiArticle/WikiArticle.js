@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Label } from 'react-bootstrap';
 import { WIKI_URL } from '../../../constants/Constants';
+import utils from '../../../common/js/utils';
 
 if (process.env.BROWSER) { require('./WikiArticle.scss'); }
 
@@ -13,7 +14,6 @@ class WikiArticle extends Component {
     super(props);
 
     this.getCategories = this.getCategories.bind(this);
-    this.truncate = this.truncate.bind(this);
   }
 
   getCategories() {
@@ -24,14 +24,14 @@ class WikiArticle extends Component {
       <div className="article-categories">
         {/* Just display the first 10 categories to avoid overflow. */}
         {article.categories.slice(0, 10).map((category, i) => {
-          return <Label bsStyle="info" key={i}>{category}</Label>;
+          return (
+            <Label bsStyle="info" key={i}>
+              {utils.truncate(category)}
+            </Label>
+          );
         })}
       </div>
     );
-  }
-
-  truncate(text, limit) {
-    return (text.length > limit) ? `${text.substr(0, limit - 1)}...` : text;
   }
 
   render() {
@@ -39,9 +39,9 @@ class WikiArticle extends Component {
     return (
       <div className="wiki-article">
         <h1>{article.title}</h1>
-        <small>{this.truncate(article.text, 50)}</small>
+        <small>{utils.truncate(article.text, 50)}</small>
         <hr />
-        <p>{this.truncate(article.text, 300) || 'No description available...'}</p>
+        <p>{utils.truncate(article.text, 300) || 'No description available...'}</p>
         {this.getCategories()}
         <hr />
         <a href={`${WIKI_URL}/${article.title}`} target="_blank">
