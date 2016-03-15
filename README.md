@@ -8,7 +8,9 @@
 
 TweetPedia is a simple webapp built in ReactJS and NodeJS that allows you to search for tweets, display those tweets and then search substrings of those tweets on Wikipedia.
 
-TweetPedia is based off a boilerplate project I wrote which you can checkout [here](https://github.com/davidvuong/node-react-bp). It has a little bit more information about the various npm commands and what technologies are included in the boilerplate.
+TweetPedia is based off a boilerplate project I wrote (you can check it out [here](https://github.com/davidvuong/node-react-bp)). There are some really great boilerplates out there already like [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example) but I wanted a deeper understand about how the various components fit together so I decided to write my own just as a learning exercise.
+
+The boilerplate has a little bit more information about the various npm commands and what technologies are used so if this README isn't enough information, you check out the boilerplate for more details.
 
 ## Getting Started
 
@@ -60,5 +62,5 @@ Tests are written utilising [Mocha](http://mochajs.org/), [React TestUtils](http
 npm test
 
 # Runs your tests on every file change.
-npm test:watch
+npm run test:watch
 ```
