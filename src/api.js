@@ -1,6 +1,6 @@
 import express from 'express';
-import twitter from '../common/vendor/twitter';
-import wikipedia from '../common/vendor/wikipedia';
+import twitter from './common/vendor/twitter';
+import wikipedia from './common/vendor/wikipedia';
 
 const router = express.Router();
 

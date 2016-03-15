@@ -9,7 +9,7 @@ import express from 'express';
 import routes from './routes';
 import configureStore from './store/configureStore';
 import config from './config';
-import apiRouter from './express/api';
+import apiRouter from './api';
 
 const app = express();
 
@@ -32,7 +32,7 @@ app.get('*', (req, res) => {
       // Matched a route in `routes`!
     } else if (props) {
       // Read the index file into memory, replacing {app-data} with context.
-      const html = fs.readFileSync('src/express/index.html', 'utf8');
+      const html = fs.readFileSync('src/index.html', 'utf8');
       res.send(html.replace(
         '{app-data}', renderToString(
           <Provider store={ configureStore() }>
