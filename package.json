@@ -4,8 +4,8 @@
   "description": "Pulls tweets from Twitter then search the content on Wikipedia",
   "main": "src/server.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-register --recursive",
-    "test:watch": "npm test -- --watch",
+    "test": "BROWSER='' mocha --compilers js:babel-register --recursive",
+    "test:watch": "BROWSER='' npm test -- --watch",
     "start": "nodemon build/server.js --watch build/server.js",
     "build": "webpack --config webpack.config.js && webpack --config webpack.server.config.js",
     "watch:client": "webpack --progress --colors --config webpack.config.js --watch",
