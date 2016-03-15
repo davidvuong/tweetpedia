@@ -7,7 +7,7 @@ import SearchInputHeader from './SearchInputHeader/SearchInputHeader';
 
 if (process.env.BROWSER) { require('./SearchInput.scss'); }
 
-class SearchInput extends Component {
+export class SearchInput extends Component {
   constructor(props) {
     super(props);
 
