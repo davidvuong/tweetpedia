@@ -22,7 +22,8 @@ class WikiArticle extends Component {
 
     return (
       <div className="article-categories">
-        {article.categories.map((category, i) => {
+        {/* Just display the first 10 categories to avoid overflow. */}
+        {article.categories.slice(0, 10).map((category, i) => {
           return <Label bsStyle="info" key={i}>{category}</Label>;
         })}
       </div>
