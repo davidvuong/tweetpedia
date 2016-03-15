@@ -23,7 +23,6 @@ class TweetList extends Component {
     twttr.ready((twttr) => { // eslint-disable-line no-undef
       twttr.events.bind('rendered', (event) => {
         const document = event.target.contentDocument;
-        document.addEventListener('mouseup', this.onMouseUp);
 
         // Q: A question for the JavaScript experts...
         //
@@ -33,6 +32,24 @@ class TweetList extends Component {
         // and not the outer document.
         //
         // Now, whether or not that's true...
+        document.addEventListener('mouseup', this.onMouseUp);
+
+        // This next bit ain't pretty.
+        //
+        // It ain't pretty for 2 (maybe 1.5) reasons:
+        //  - I'm doing direct DOM manipulation but it's not too bad because it's
+        //  in an iframe and React doesn't manage changes there anyway.
+        //  - I'm relying on an undocumented Twitter implementation.
+        //
+        // I'm removing the `data-click-to-open-target` from a div element within
+        // the tweet's iframe. This is so that clicking on the tweet no longer
+        // opens a new tab.
+        //
+        // I found that if I'm not careful when selecting text, I can accidentally
+        // open a new tab... which is bad!
+        const attribute = 'data-click-to-open-target';
+        const elem = document.querySelector(`[${attribute}]`);
+        elem.removeAttribute(attribute);
       });
     });
   }
